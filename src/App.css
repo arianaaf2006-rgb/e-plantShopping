@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://images.unsplash.com/photo-1463320726826-82d7205460b4?w=1200');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+#root {
+  background-color: rgba(255, 255, 255, 0.9);
+  min-height: 100vh;
+}
+
+.home-page {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.home-page h1 {
+  font-size: 3rem;
+  color: #2d5a27;
+}
+
+.get-started-btn {
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+.get-started-btn:hover {
+  background-color: #45a049;
+}
