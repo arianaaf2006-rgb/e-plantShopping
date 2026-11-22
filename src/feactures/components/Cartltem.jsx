@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { removeItem, updateQuantity } from '../features/CartSlice';
 
 const CartItem = () => {
@@ -15,21 +16,37 @@ const CartItem = () => {
   };
 
   const handleUpdateQuantity = (name, quantity) => {
-    if (quantity > 0) {
+    if (quantity === 0) {
+      dispatch(removeItem(name));
+    } else if (quantity > 0) {
       dispatch(updateQuantity({ name, quantity }));
     }
   };
 
+  const handleCheckout = () => {
+    alert("Próximamente");
+  };
+
   if (!items.length) {
-    return <h2>Tu carrito está vacío</h2>;
+    return (
+      <div className="cart-container">
+        <h2>Tu Carrito de Compras</h2>
+        <p>Tu carrito está vacío</p>
+        <Link to="/plants">
+          <button>Continuar comprando</button>
+        </Link>
+      </div>
+    );
   }
 
   return (
     <div className="cart-container">
       <h2>Tu Carrito de Compras</h2>
+      
       <table>
         <thead>
           <tr>
+            <th>Imagen</th>
             <th>Producto</th>
             <th>Precio Unitario</th>
             <th>Cantidad</th>
@@ -40,6 +57,7 @@ const CartItem = () => {
         <tbody>
           {items.map((item, index) => (
             <tr key={index}>
+              <td><img src={item.img} alt={item.name} style={{width: '50px', height: '50px'}} /></td>
               <td>{item.name}</td>
               <td>${item.cost}</td>
               <td>
@@ -55,7 +73,15 @@ const CartItem = () => {
           ))}
         </tbody>
       </table>
+      
       <h3>Total: ${calculateTotalAmount()}</h3>
+      
+      <div style={{marginTop: '20px', gap: '10px', display: 'flex'}}>
+        <button onClick={handleCheckout}>Checkout</button>
+        <Link to="/plants">
+          <button>Continuar comprando</button>
+        </Link>
+      </div>
     </div>
   );
 };
